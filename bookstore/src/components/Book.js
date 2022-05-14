@@ -1,13 +1,11 @@
-import React from "react";
+import React from 'react';
 
 function Book() {
-
-    return(
-        <div>
-            <h1>Machine learning by Chime</h1>
-        </div>
-    )
+  return (
+    <div>
+      <h1>Machine learning by Chime</h1>
+    </div>
+  );
 }
 
-
-export default Book
+export default Book;
