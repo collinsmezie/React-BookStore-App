@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
-const ADD = 'ADD';
-const REMOVE = 'REMOVE';
+export const ADD = 'Books/books/ADD';
+const REMOVE = 'Books/books/REMOVE';
 
 const Book = {
   title: '',
