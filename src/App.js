@@ -1,31 +1,20 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Books from './components/books';
-import Category from './components/categories';
+import BookList from './components/Routes/BookList';
+import Categories from './components/Routes/Categories';
 
-/* eslint-disable no-useless-constructor */
-/* eslint-disable react/prefer-stateless-function */
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <h1> Book store app</h1>
+function App() {
+  return (
+    <div className="App">
+      <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Books />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="categories" element={<Category />} />
-
+          <Route path="/" index element={<BookList />} />
+          <Route path="/categories" element={<Categories />} />
         </Routes>
-      </div>
-    );
-  }
+      </Router>
+    </div>
+  );
 }
 
 export default App;
