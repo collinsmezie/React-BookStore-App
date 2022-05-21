@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { deleteBook } from '../../redux/Books/books';
 import Progress from './Progress';
 
-
 const Book = (props) => {
   const {
     id, title, author, category,

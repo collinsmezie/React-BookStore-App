@@ -4,7 +4,6 @@ import Book from './Book';
 import NewBook from './NewBook';
 import { getBooks } from '../../redux/Books/books';
 
-
 const BookList = () => {
   const { books, loading } = useSelector((state) => state.books);
   const dispatch = useDispatch();
