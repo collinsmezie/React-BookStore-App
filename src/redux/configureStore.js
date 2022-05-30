@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   categories: categoryReducer,
 });
 
-//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
+// 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
 
 const store = createStore(rootReducer,
   applyMiddleware(thunk));
