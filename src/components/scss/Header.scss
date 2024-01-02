@@ -1,16 +1,32 @@
 nav {
   display: flex;
   height: 15vh;
-  align-items: center;
-  gap: 10vh;
   background-color: rgb(248, 246, 246);
 
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Added align-items property */
+    width: 100%;
+    padding: 0 2vw;
+    /* Adjusted padding for better spacing */
+  }
+
   .title_link {
-    margin: 0 0 0 2vw;
     text-decoration: none;
     font-size: 25px;
     font-weight: 500;
     color: #6767f1;
+    margin-right: 4vw;
+    /* Added margin to create space */
+  }
+
+  .links-container {
+    display: flex;
+    gap: 3vw;
+    margin-right: auto;
+    /* Aligns "BOOKS" and "CATEGORIES" to the left */
   }
 
   .link {
@@ -19,4 +35,22 @@ nav {
     font-weight: 100;
     color: #07070a;
   }
+
+  /* Add these styles to your existing Style.scss file or in the component's styles */
+
+.add-book {
+  background-color: #1e51dc; /* Primary color */
+  color: #fff; /* White text color */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px; /* Adjust font size as needed */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+
+  &:hover {
+    background-color: #0f388d; /* Darker shade on hover */
+  }
+}
+
 }

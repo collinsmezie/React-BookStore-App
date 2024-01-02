@@ -11,11 +11,11 @@ const Progress = () => (
         <div className="mask half">
           <div className="fill" />
         </div>
-        <div className="inside-circle"> 75% </div>
+        <div className="inside-circle"> 90% </div>
       </div>
     </div>
     <div className="percentage_container">
-      <h3>75%</h3>
+      <h3>90%</h3>
       <p>Completed</p>
     </div>
   </div>

@@ -3,7 +3,10 @@ const REMOVE_BOOK = 'REMOVE_BOOK';
 const FETCH_BOOKS = 'FETCH_BOOKS';
 const FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR';
 const FETCH_BOOKS_LOADING = 'FETCH_BOOKS_LOADING';
-const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/zb4rRKmTdPu5hEXD41Ox/books';
+// const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/zb4rRKmTdPu5hEXD41Ox/books';
+const URL = 'https://hngx-7zpk.onrender.com/api/books'
+// const URL = 'http://localhost:4000/api/books'
+
 
 export const addBook = (book) => ({
   type: ADD_BOOK,
@@ -41,13 +44,18 @@ export const getBooks = () => (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       const newBooks = [];
-      Object.keys(data).forEach((key) => {
+      data.forEach((key) => {
         if (key) {
           newBooks.push({
-            ...data[key][0],
-            item_id: key,
+            title: key.title,
+            author: key.author,
+            category: key.category,
+            current_chapter: key.current_chapter,
+            progress: key.progress,
+            id: key._id,
           });
         }
+        console.log('NEWBOOKS',newBooks);
       });
       dispatch(fetchBooks(newBooks));
     })
@@ -56,17 +64,26 @@ export const getBooks = () => (dispatch) => {
     });
 };
 
+
 export const postBook = (book) => (dispatch) => {
+  console.log('Inside post book now', book);
+  
   fetch(URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify((book)),
-  }).then(() => {
+    body: JSON.stringify(book),
+  })
+  .then(() => {
     dispatch(addBook(book));
+  })
+  .catch((error) => {
+    console.error('Error posting data:', error);
+    // You might dispatch an action to handle the error state in your Redux store
   });
 };
+
 
 export const deleteBook = (id) => (dispatch) => {
   fetch(`${URL}/${id}`, {
@@ -95,7 +112,7 @@ const bookReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        books: state.books.filter((book) => book.item_id !== action.payload),
+        books: state.books.filter((book) => book.id !== action.payload),
       };
     case FETCH_BOOKS:
       return {

@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { deleteBook } from '../../redux/Books/books';
-import Progress from './Progress';
 import './scss/Style.scss';
+import RoundProgressBar from '../ProgressBar';
 
 const Book = (props) => {
   const {
-    id, title, author, category,
+     title, author, category, current_chapter, progress, id
   } = props;
   const dispatch = useDispatch();
 
@@ -22,17 +22,18 @@ const Book = (props) => {
         <h2>{title}</h2>
         <p>{author}</p>
         <div className="d_flex_r g15">
-          <button type="button">Comments</button>
-          <button type="button" onClick={removeHandler}>Remove</button>
-          <button type="button">Edit</button>
+          <button className="add-book" type="button">Comments</button>
+          <button className="add-book" type="button" onClick={removeHandler}>Remove</button>
+          <button className="add-book" type="button">Edit</button>
         </div>
       </div>
       <div className="card-progress d_flex_r g10_vw">
-        <Progress />
+        {/* <Progress /> */}
+        <RoundProgressBar percentage={progress} />
         <div className="d_flex_c progress_updates">
           <h2>CURRENT CHAPTER</h2>
-          <h3>Chapter 1: &quot;Intuition&quot;</h3>
-          <button type="button">UPDATE PROGRESS</button>
+          <h3>chapter {current_chapter}: &quot;Intuition&quot;</h3>
+          <button className="add-book" type="button">UPDATE PROGRESS</button>
         </div>
       </div>
     </div>
@@ -40,10 +41,12 @@ const Book = (props) => {
 };
 
 Book.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  current_chapter: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
 };
 
 export default Book;
+

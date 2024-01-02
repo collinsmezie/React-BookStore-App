@@ -1,5 +1,5 @@
 import React from 'react';
-import { generate } from 'randomized-string';
+// import { generate } from 'randomized-string';
 import { useDispatch } from 'react-redux';
 import { postBook } from '../../redux/Books/books';
 import './scss/Style.scss';
@@ -9,17 +9,20 @@ const NewBook = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { title, author, category } = e.target.elements;
+    const { title, author, category, current_chapter, progress} = e.target.elements;
     const newBook = {
-      item_id: generate(),
       title: title.value,
       author: author.value,
       category: category.value,
+      current_chapter: current_chapter.value,
+      progress: progress.value
     };
     dispatch(postBook(newBook));
     title.value = '';
     author.value = '';
     category.value = '';
+    current_chapter.value = '';
+    progress.value = '';
   };
 
   return (
@@ -29,6 +32,8 @@ const NewBook = () => {
         <input type="text" name="title" placeholder="Title" required />
         <input type="text" name="author" placeholder="Author" required />
         <input type="text" name="category" placeholder="Category" required />
+        <input type="text" name="current_chapter" placeholder="Current Chapter" required />
+        <input type="number" name="progress" placeholder="Progress (%)" required />
         <button type="submit">Add</button>
       </form>
     </div>

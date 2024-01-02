@@ -56,6 +56,7 @@
 
 .book-container {
   margin: 0 0 0 2vw;
+  padding-bottom: 2%;
 }
 
 .bookForm {
@@ -73,4 +74,80 @@
 
 .progress_updates {
   align-items: center;
+}
+
+.add-book {
+  background-color: #1e51dc;
+  /* Primary color */
+  color: #fff;
+  /* White text color */
+  /* Adjust padding as needed */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  /* Adjust font size as needed */
+  transition: background-color 0.3s ease;
+  /* Smooth transition on hover */
+
+  &:hover {
+    background-color: #0f388d;
+    /* Darker shade on hover */
+  }
+
+}
+
+
+
+
+/* Add these styles to your existing Style.scss file */
+
+.bookForm {
+  width: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto 0;
+  /* Added top margin of 20px, auto for horizontal centering */
+}
+
+
+h2 {
+  color: #1e51dc;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #1e51dc;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0f388d;
+  /* Darker shade on hover */
+}
+
+.back-button {
+  margin-top: 15px;
+  color: #1e51dc;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  text-decoration: underline;
 }

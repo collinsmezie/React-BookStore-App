@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Book from './Book';
-import NewBook from './NewBook';
 import { getBooks } from '../../redux/Books/books';
 import './scss/Style.scss';
 
 const BookList = () => {
   const { books, loading } = useSelector((state) => state.books);
   const dispatch = useDispatch();
+  // console.log('BOOKLIST component:', books); 
 
   useEffect(() => {
     dispatch(getBooks());
@@ -17,16 +17,18 @@ const BookList = () => {
   if (loading) {
     fetchedBooks = <h2>Hold on...</h2>;
   } else {
-    fetchedBooks = books.map((book) => (
+    fetchedBooks = books.map((book, index) => (
       <div
-        key={book.item_id}
+        key={index}
         className="container"
       >
         <Book
-          id={book.item_id}
           title={book.title}
           author={book.author}
           category={book.category}
+          current_chapter={book.current_chapter}
+          progress={book.progress}
+          id={book.id}
         />
       </div>
 
@@ -38,7 +40,6 @@ const BookList = () => {
       <ul>
         {fetchedBooks}
       </ul>
-      <NewBook />
     </div>
   );
 };
