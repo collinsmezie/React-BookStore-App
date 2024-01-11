@@ -7,7 +7,6 @@ import './scss/Style.scss';
 const BookList = () => {
   const { books, loading } = useSelector((state) => state.books);
   const dispatch = useDispatch();
-  // console.log('BOOKLIST component:', books); 
 
   useEffect(() => {
     dispatch(getBooks());

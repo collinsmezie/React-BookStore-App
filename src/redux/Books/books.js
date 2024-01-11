@@ -3,10 +3,11 @@ const REMOVE_BOOK = 'REMOVE_BOOK';
 const FETCH_BOOKS = 'FETCH_BOOKS';
 const FETCH_BOOKS_ERROR = 'FETCH_BOOKS_ERROR';
 const FETCH_BOOKS_LOADING = 'FETCH_BOOKS_LOADING';
-// const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/zb4rRKmTdPu5hEXD41Ox/books';
-const URL = 'https://hngx-7zpk.onrender.com/api/books'
-// const URL = 'http://localhost:4000/api/books'
+const EDIT_BOOK = 'EDIT_BOOK';
 
+// const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/zb4rRKmTdPu5hEXD41Ox/books';
+// const URL = 'https://hngx-7zpk.onrender.com/api/books';
+const URL = 'http://localhost:3000/api/books';
 
 export const addBook = (book) => ({
   type: ADD_BOOK,
@@ -21,6 +22,11 @@ export const removeBook = (id) => ({
 export const fetchBooks = (books) => ({
   type: FETCH_BOOKS,
   payload: books,
+});
+
+export const editBook = (book) => ({
+  type: EDIT_BOOK,
+  payload: book,
 });
 
 export const fetchBooksError = (error) => ({
@@ -52,10 +58,9 @@ export const getBooks = () => (dispatch) => {
             category: key.category,
             current_chapter: key.current_chapter,
             progress: key.progress,
-            id: key._id,
+            id: key.id,
           });
         }
-        console.log('NEWBOOKS',newBooks);
       });
       dispatch(fetchBooks(newBooks));
     })
@@ -64,10 +69,7 @@ export const getBooks = () => (dispatch) => {
     });
 };
 
-
 export const postBook = (book) => (dispatch) => {
-  console.log('Inside post book now', book);
-  
   fetch(URL, {
     method: 'POST',
     headers: {
@@ -75,23 +77,31 @@ export const postBook = (book) => (dispatch) => {
     },
     body: JSON.stringify(book),
   })
-  .then(() => {
-    dispatch(addBook(book));
-  })
-  .catch((error) => {
-    console.error('Error posting data:', error);
-    // You might dispatch an action to handle the error state in your Redux store
-  });
+    .then(() => {
+      dispatch(addBook(book));
+    });
 };
-
 
 export const deleteBook = (id) => (dispatch) => {
   fetch(`${URL}/${id}`, {
     method: 'DELETE',
-    body: JSON.stringify({ item_id: id }),
+    body: JSON.stringify({ id }),
   })
     .then(() => {
       dispatch(removeBook(id));
+    });
+};
+
+export const updateBook = (book) => (dispatch) => {
+  fetch(`${URL}/${book.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(book),
+  })
+    .then(() => {
+      dispatch(editBook(book));
     });
 };
 
@@ -120,6 +130,26 @@ const bookReducer = (state = initialState, action) => {
         loading: false,
         books: action.payload,
       };
+
+    case EDIT_BOOK:
+      return {
+        ...state,
+        loading: false,
+        books: state.books.map((book) => {
+          if (book.id === action.payload.id) {
+            return {
+              ...book,
+              title: action.payload.title,
+              author: action.payload.author,
+              category: action.payload.category,
+              current_chapter: action.payload.current_chapter,
+              progress: action.payload.progress,
+            };
+          }
+          return book;
+        }),
+      };
+
     case FETCH_BOOKS_ERROR:
       return {
         ...state,

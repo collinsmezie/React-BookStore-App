@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteBook } from '../../redux/Books/books';
 import './scss/Style.scss';
 import RoundProgressBar from '../ProgressBar';
 
 const Book = (props) => {
   const {
-     title, author, category, current_chapter, progress, id
+    title, author, category, current_chapter, progress, id
   } = props;
   const dispatch = useDispatch();
 
@@ -24,15 +25,23 @@ const Book = (props) => {
         <div className="d_flex_r g15">
           <button className="add-book" type="button">Comments</button>
           <button className="add-book" type="button" onClick={removeHandler}>Remove</button>
-          <button className="add-book" type="button">Edit</button>
+          <Link to={{
+            pathname: `/edit/${id}`,
+          }}
+          >
+            <button className="add-book" type="button">Edit</button>
+          </Link>
         </div>
       </div>
       <div className="card-progress d_flex_r g10_vw">
-        {/* <Progress /> */}
         <RoundProgressBar percentage={progress} />
         <div className="d_flex_c progress_updates">
           <h2>CURRENT CHAPTER</h2>
-          <h3>chapter {current_chapter}: &quot;Intuition&quot;</h3>
+          <h3>
+            chapter
+            {current_chapter}
+            : &quot;Intuition&quot;
+          </h3>
           <button className="add-book" type="button">UPDATE PROGRESS</button>
         </div>
       </div>
@@ -49,4 +58,3 @@ Book.propTypes = {
 };
 
 export default Book;
-
