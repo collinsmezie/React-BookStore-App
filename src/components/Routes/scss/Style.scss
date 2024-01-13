@@ -30,6 +30,16 @@
   display: flex;
 }
 
+.d_flex_a {
+  display: flex;
+  align-items: center; /* Optional: Align items vertically centered */
+  gap: 40px;
+}
+
+// .d_flex_a > *:not(:last-child) {
+// }
+
+
 .g8 {
   gap: 8px;
 }

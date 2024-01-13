@@ -1,5 +1,5 @@
 import React from 'react';
-import { generate } from 'randomized-string';
+// import { generate } from 'randomized-string';
 import { useDispatch } from 'react-redux';
 import { postBook } from '../../redux/Books/books';
 import './scss/Style.scss';
@@ -11,7 +11,7 @@ const NewBook = () => {
     e.preventDefault();
     const { title, author, category, current_chapter, progress } = e.target.elements;
     const newBook = {
-      id: generate(),
+      // id: generate(),
       title: title.value,
       author: author.value,
       category: category.value,

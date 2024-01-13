@@ -34,7 +34,18 @@ const Book = (props) => {
         </div>
       </div>
       <div className="card-progress d_flex_r g10_vw">
-        <RoundProgressBar percentage={progress} />
+        <div className="d_flex_a">
+          <RoundProgressBar percentage={progress} />
+          <div>
+            <h3>
+              {progress}
+              {' '}
+              %
+            </h3>
+            <p>Completed</p>
+          </div>
+        </div>
+
         <div className="d_flex_c progress_updates">
           <h2>CURRENT CHAPTER</h2>
           <h3>

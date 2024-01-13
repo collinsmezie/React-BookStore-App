@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './scss/Header.scss';
-import './Routes/scss/Style.scss'
-import './Routes/NewBook'
+import './Routes/scss/Style.scss';
+import './Routes/NewBook';
 
 function Header() {
   return (
@@ -23,7 +23,7 @@ function Header() {
         </div>
         <div>
           <Link className="link" to="/Newbook">
-           <button className='add-book'>ADD BOOK</button> 
+            <button className="add-book" type="button">ADD BOOK</button>
           </Link>
         </div>
       </div>

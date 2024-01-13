@@ -6,8 +6,8 @@ const FETCH_BOOKS_LOADING = 'FETCH_BOOKS_LOADING';
 const EDIT_BOOK = 'EDIT_BOOK';
 
 // const URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/zb4rRKmTdPu5hEXD41Ox/books';
-// const URL = 'https://hngx-7zpk.onrender.com/api/books';
-const URL = 'http://localhost:3000/api/books';
+const URL = 'https://hngx-7zpk.onrender.com/api/books';
+// const URL = 'http://localhost:3000/api/books';
 
 export const addBook = (book) => ({
   type: ADD_BOOK,
@@ -58,7 +58,7 @@ export const getBooks = () => (dispatch) => {
             category: key.category,
             current_chapter: key.current_chapter,
             progress: key.progress,
-            id: key.id,
+            id: key._id,
           });
         }
       });
